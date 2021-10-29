@@ -5,7 +5,7 @@ import { createStructuredSelector } from 'reselect';
 import { githubIDSearchKeyword } from '../../../../redux/githubID/githubID.action';
 import {
   GithubIdBaseInterface,
-  GithubIDBaseState
+  GithubIDBaseState,
 } from '../../../../redux/githubID/githubID.reducer';
 import { selectAllPersona } from '../../../../redux/githubID/githubID.selector';
 import TextInput from '../TextInput';
@@ -62,8 +62,6 @@ const AdaptedGithubUserDisplay: React.FC<any> = (props) => {
       dispatchSearchGithubIDInput({ persona, position, inputValue });
     }
   }, [userFieldInputEvent.value, allPersona, persona, position, dispatchSearchGithubIDInput]);
-
-
 
   return (
     <>
