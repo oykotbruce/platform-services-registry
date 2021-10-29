@@ -59,7 +59,10 @@ const githubIDReducer = (state = INITIAL_STATE, action: Action) => {
     case GithubIDActionTypes.GITHUBID_USERS_REQUEST:
       const { persona: userRequestPersona, position: userRequestPosition } = action.payload;
       const newStateForUserRequest = { ...state };
-      newStateForUserRequest[userRequestPersona][userRequestPosition] = {
+      const newPersonaForUserReuqest: GithubIdBaseInterface[] = newStateForUserRequest[
+        userRequestPersona
+      ] || [{ ...GithubIDBaseState }];
+      newPersonaForUserReuqest[userRequestPosition] = {
         ...newStateForUserRequest[userRequestPersona][userRequestPosition],
         isLoading: true,
         everFetched: false,
@@ -70,7 +73,10 @@ const githubIDReducer = (state = INITIAL_STATE, action: Action) => {
     case GithubIDActionTypes.GITHUBID_USER_EXISTS:
       const { persona: userExistPersona, position: userExistPosition } = action.payload;
       const newStateForUserExist = { ...state };
-      newStateForUserExist[userExistPersona][userExistPosition] = {
+      const newPersonaForUserExis: GithubIdBaseInterface[] = newStateForUserExist[
+        userExistPersona
+      ] || [{ ...GithubIDBaseState }];
+      newPersonaForUserExis[userExistPosition] = {
         ...newStateForUserExist[userExistPersona][userExistPosition],
         isLoading: true,
         everFetched: true,
@@ -85,7 +91,10 @@ const githubIDReducer = (state = INITIAL_STATE, action: Action) => {
         data: userStoreData,
       } = action.payload;
       const newStateForStoreUser = { ...state };
-      newStateForStoreUser[userStorePersona][userStorePosition] = {
+      const newPersonaForStoreUser: GithubIdBaseInterface[] = newStateForStoreUser[
+        userStorePersona
+      ] || [{ ...GithubIDBaseState }];
+      newPersonaForStoreUser[userStorePosition] = {
         ...newStateForStoreUser[userStorePersona][userStorePosition],
         githubUser: userStoreData,
         isLoading: false,
@@ -95,7 +104,10 @@ const githubIDReducer = (state = INITIAL_STATE, action: Action) => {
     case GithubIDActionTypes.GITHUBID_USER_DOES_NOT_EXIST:
       const { persona: userNotExistPersona, position: userNotExistPosition } = action.payload;
       const newStateForNoneExistUser = { ...state };
-      newStateForNoneExistUser[userNotExistPersona][userNotExistPosition] = {
+      const newPersonaForNoneExistUser: GithubIdBaseInterface[] = newStateForNoneExistUser[
+        userNotExistPersona
+      ] || [{ ...GithubIDBaseState }];
+      newPersonaForNoneExistUser[userNotExistPosition] = {
         ...newStateForNoneExistUser[userNotExistPersona][userNotExistPosition],
         githubUser: null,
         isLoading: false,
@@ -111,7 +123,10 @@ const githubIDReducer = (state = INITIAL_STATE, action: Action) => {
         inputValue: userInputValue,
       } = action.payload;
       const newStateForUserInput = { ...state };
-      newStateForUserInput[userInputPersona][userInputPosition] = {
+      const newPersonaForUserInput: GithubIdBaseInterface[] = newStateForUserInput[
+        userInputPersona
+      ] || [{ ...GithubIDBaseState }];
+      newPersonaForUserInput[userInputPosition] = {
         inputKeyword: userInputValue,
         githubUser: null,
         isLoading: false,
