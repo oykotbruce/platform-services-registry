@@ -5,7 +5,7 @@ import { createStructuredSelector } from 'reselect';
 import { githubIDSearchKeyword } from '../../../../redux/githubID/githubID.action';
 import {
   GithubIdBaseInterface,
-  GithubIDBaseState,
+  GithubIDBaseState
 } from '../../../../redux/githubID/githubID.reducer';
 import { selectAllPersona } from '../../../../redux/githubID/githubID.selector';
 import TextInput from '../TextInput';
@@ -53,15 +53,17 @@ const AdaptedGithubUserDisplay: React.FC<any> = (props) => {
     ...rest
   } = props;
 
+  const validatingRole: GithubIdBaseInterface[] = allPersona[persona] || [{ ...GithubIDBaseState }];
+  const { isLoading, githubUser, notFound, inputKeyword } = validatingRole[position];
+
   useEffect(() => {
-    if (userFieldInputEvent.value !== allPersona[persona][position].inputKeyword) {
+    if (userFieldInputEvent.value !== inputKeyword) {
       const inputValue = userFieldInputEvent.value;
       dispatchSearchGithubIDInput({ persona, position, inputValue });
     }
   }, [userFieldInputEvent.value, allPersona, persona, position, dispatchSearchGithubIDInput]);
 
-  const validatingRole: GithubIdBaseInterface[] = allPersona[persona] || [{ ...GithubIDBaseState }];
-  const { isLoading, githubUser, notFound } = validatingRole[position];
+
 
   return (
     <>
