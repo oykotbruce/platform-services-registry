@@ -12,6 +12,7 @@
 name: "CodeQL"
 
 on:
+  workdispatch:
   push:
     branches: [ master ]
   pull_request:
