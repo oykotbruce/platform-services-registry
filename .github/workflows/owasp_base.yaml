@@ -1,0 +1,27 @@
+name: zap_baseline_scan
+on:
+#  push:
+#    branches:
+#      - main
+#  pull_request:
+  workflow_call:
+  workflow_dispatch:
+jobs:
+  zap_base_scan:
+    name : web application base_scan
+    runs-on: ubuntu-latest
+    permissions: 
+      issues: write
+      security-events: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: main
+      - name: scan
+        uses: zaproxy/action-baseline@v0.7.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          docker_name: 'owasp/zap2docker-stable'
+          target: 'http://192.168.49.2:30961' # target: 'https://localhost:8080'
+          cmd_options: '-a'
